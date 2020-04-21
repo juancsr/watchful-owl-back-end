@@ -12,3 +12,8 @@ def standarResponse(data={}, error=None):
         response['error'] = error
 
     return response
+
+
+# Función para imprimir de una forma genérica los errores de ejecución
+def logger(message, function="<>"):
+    print("Error in: {} => {}".format(function, message))
