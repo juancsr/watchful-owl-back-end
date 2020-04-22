@@ -24,3 +24,5 @@ Este devería devolver:
 
 Sí es así, el API está listo para su uso :)
 
+# Heroku
+Puedes ver está API desplegada en heroku: https://watchful-owl.herokuapp.com/test
