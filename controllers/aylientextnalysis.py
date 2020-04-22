@@ -1,9 +1,13 @@
 import utils.utils as utils
 from aylienapiclient import textapi
 
+# Agotado yhomii.cloud
+# APP_ID="236f2621"
+# API_KEY="7a388349f12393dfe3e11be438ac6ae9"
 
-APP_ID="236f2621"
-API_KEY="7a388349f12393dfe3e11be438ac6ae9"
+# juancsr
+APP_ID="fc10cf54"
+API_KEY="468a71e8c39d17e16241dafb68a81c2f"
 
 """
 Construye un diccionario con el resultado completo del análisis de una página que lleva a una url, compuesto por: 
