@@ -1,7 +1,13 @@
 from db.connection import GetDbClient, printServerStatus, Testing
-from utils.utils import logger
+import utils.utils as utils
 
-# Obtiene un usuario a partir de su email
+"""
+Obtiene un usuario a partir de su username/email y contraseña, la búsqueda la realiza con el email o el username de la persona
+
+:param username: es el nombre de usuario o el email de la persona
+:password: contraseña
+:return: un diccionario si se encontró a la persona, de otra forma devuelve un None
+"""
 def getUserByEmail(username, password):
     user = None
     try:
@@ -12,7 +18,7 @@ def getUserByEmail(username, password):
             "user_info.password": password
         })
     except:
-        logger("error getting the data", "getUserByEmail")
+        utils.logger("error getting the data", "getUserByEmail")
     
     return user
 

@@ -1,13 +1,9 @@
 import datetime
+import utils.utils as utils
+from controllers import person, aylientextnalysis
 
 from flask import Flask, request, make_response, session
-from controllers.person import getUserByEmail
-from utils.utils import standarResponse
-from flask_restful import Resource, Api, reqparse
-
 app = Flask(__name__)
-api = Api(app)
-parser = reqparse.RequestParser()
 
 # Ruta de prueba
 @app.route('/test')
@@ -22,11 +18,11 @@ def login():
         username = request_json['user']
         password = request_json['password']
         print(username, password)
-        user = getUserByEmail(username, password)
+        user = person.getUserByEmail(username, password)
         if user is None:
-            return standarResponse(error="User not found")
+            return utils.standarResponse(error="User not found")
         user["_id"] = str(user["_id"])
-        return standarResponse(user)
+        return utils.standarResponse(user)
 
 # Endpoint para registrar nuevos usuarios
 @app.route('/sign-up', methods=['POST'])
@@ -34,7 +30,17 @@ def sign_up():
     if request.method == 'POST':
         request_json = request_json.get_json(force=True)
         print(request_json)
-    return standarResponse({"data": "user created"})
+    return utils.standarResponse({"data": "user created"})
+
+@app.route('/text-classification', methods=['POST'])
+def testAylienApi():
+    if request.method == 'POST':
+        request_json = request.get_json(force=True)
+        url = request_json['url']
+        result = aylientextnalysis.performsFullAnalysis(url)
+        if not result:
+            return utils.standarResponse(error="Error with URL")
+    return utils.standarResponse(result)
 
 # Inicio de la aplicación
 if __name__ == '__main__':
